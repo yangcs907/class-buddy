@@ -35,7 +35,7 @@ class Landing extends Component {
     );
     authWords = (
       <div>
-      <h4>Welcome{' '}{user.name}!</h4>
+      <h4>Welcome{' '}<span id="username">{user.name}</span></h4>
       <p>Looks like you are signed in, click below to go straight to your dashboard!</p>
       </div>
     );
