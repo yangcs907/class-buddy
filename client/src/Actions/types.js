@@ -1,0 +1,6 @@
+// action types for reducers
+export const GET_ERROR_MESSAGES = 'GET_ERROR_MESSAGES';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const SET_CURRENT_USER_INFO = 'SET_CURRENT_USER_INFO';
+export const SHOW_WEB_TOKEN = 'SHOW_WEB_TOKEN';
+export const SHOW_ASSIGNMENTS = 'SHOW_ASSIGNMENTS';

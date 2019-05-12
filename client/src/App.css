@@ -1,0 +1,259 @@
+.App {
+
+}
+/* Header */
+.headerDiv {
+  height: 300px;
+  background-image: url('./images/class.jpg');
+  background-size: cover;
+  background-position: bottom;
+}
+.navBar {
+  padding-left: 50px;
+}
+.navLink {
+  margin-left: 30px;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 24px;
+  cursor: pointer;
+}
+.navLink:hover {
+  color: rgba(0,223,255,1);
+}
+#navIcon {
+  font-size: 18px;
+  color: rgba(0,223,255,1);
+}
+#logout:hover {
+  color: rgba(0,223,255,1);
+}
+.titleDiv {
+  text-align: left;
+  padding-left: 100px;
+  padding-top: 60px;
+  color: white;
+  font-family: 'Baloo Bhai', sans-serif;
+}
+#titleName {
+  font-size: 40px;
+}
+/* Home */
+.home {
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+  padding-top: 20px;
+}
+.home h4 {
+  font-weight: bold;
+  font-size: 35px;
+}
+.home p {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+#homeButtons {
+  background-color: rgba(0,223,255,0.6);
+  color: white;
+  border-style: none;
+  border-radius: 7px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  margin-top: 50px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 100px;
+}
+#homeButtons:hover {
+  background-color: rgba(0,223,255,0.8);
+}
+
+/* Inputs */
+input {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+input::placeholder {
+  color: rgba(155,155,155,1);
+  font-size: 18px;
+  font-weight: bold;
+}
+.inValid {
+  color: red;
+  font-size: 14px;
+}
+
+/* Register */
+.register {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  margin:auto;
+  width: 750px;
+  max-width: 100%;
+}
+#submitButton {
+  background-color: rgba(0,223,255,0.6);
+  color: white;
+  border-style: none;
+  border-radius: 7px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+#submitButton:hover {
+  background-color: rgba(0,223,255,0.8);
+}
+#registerHead {
+  font-size: 45px;
+  font-weight: bold;
+}
+#icon {
+  color: rgba(0,223,255,1)
+}
+/* Login */
+.login {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  margin:auto;
+  width: 750px;
+  max-width: 100%;
+}
+#loginHead {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+/* Dashboard */
+.dashboard {
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+  margin:auto;
+  width: 750px;
+  max-width: 100%;
+  padding-top: 25px;
+}
+#dashHeader {
+  font-weight: bold;
+  font-size: 35px;
+}
+#username {
+  color: rgba(0,223,255,1);
+}
+#dashDesc {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+
+/* Assignments */
+.assignmentList {
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+  margin:auto;
+  width: 750px;
+  padding-top: 25px;
+}
+#dashOptionRow {
+  margin-bottom: 5px;
+}
+
+#dashOptionHeader {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 50px;
+  cursor: pointer;
+}
+.list {
+  margin-top: 30px;
+  text-align: left;
+  border-style: solid;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 5px;
+  border-width: 3px;
+  border-color: rgba(0,223,255,0.7);
+}
+#assignmentName {
+  font-weight: bold;
+  font-size: 20px;
+}
+#assignmentDesc {
+  font-weight: bold;
+}
+/* Footer */
+.footer {
+  position: absolute;
+  margin-top: 50px;
+  bottom: 0;
+  padding-left: 15px;
+  border-top-style: solid;
+  border-width: 0.5px;
+  width: 100%;
+}
+#footerText {
+  font-family: 'PT Sans', sans-serif;
+  line-height: 10px;
+}
+/* Media queries */
+@media screen and (max-width: 815px) {
+  .home {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .register {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .login {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .dashboard {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  #dashOptionRow {
+    margin-bottom: 0px;
+  }
+  #dashOptionHeader {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .list {
+    margin-top: 8px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .navBar {
+    text-align: left;
+    padding: 0px;
+  }
+  .navLink {
+    font-size: 19px;
+    margin-left: 20px;
+  }
+  .titleDiv {
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 0px;
+    padding-right: 50px;
+  }
+  #titleName {
+    font-size: 36px;
+  }
+  #dashHeader {
+    text-align: left;
+  }
+  #dashDesc {
+    text-align: left;
+  }
+}
