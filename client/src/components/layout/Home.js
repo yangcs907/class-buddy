@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 
 import '../../App.css';
 
-class Landing extends Component {
-  // componentDidMount() {
-  //   if (this.props.auth.isAuthenticated) {
-  //     this.props.history.push('/dashboard');
-  //   }
-  // };
+class Home extends Component {
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  };
   render() {
     const isAuthenticated = this.props.auth.isAuthenticated;
     const user = this.props.auth.user;
@@ -48,7 +48,7 @@ class Landing extends Component {
   }
 };
 
-Landing.propTypes = {
+Home.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
@@ -56,4 +56,4 @@ const mapStateToProps = (state) => ({
   auth: state.authenticate
 });
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps)(Home);

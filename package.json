@@ -1,7 +1,7 @@
 {
-  "name": "jwt-passport-redux",
+  "name": "Class Buddy",
   "version": "1.0.0",
-  "description": "boilerplate for authentication with redux",
+  "description": "Web app for Canvas Instructure",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,8 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Chris Yang",
   "license": "MIT",

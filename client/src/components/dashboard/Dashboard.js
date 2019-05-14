@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Assignments from './Assignments.js';
+import CreateAssignment from './CreateAssignment.js';
 
 import '../../App.css';
 
@@ -51,7 +52,7 @@ class Dashboard extends Component {
       activeCreate = {
         color: "rgba(0,223,255,1)"
       }
-      currentContent = ''
+      currentContent = <CreateAssignment />
     } else {
       activeCreate = {
         color: "black"
@@ -61,13 +62,13 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <h5 id="dashHeader">Welcome <span id="username">{ user.name }</span></h5>
-        <p id="dashDesc">This is your dashboard. Here you can view assignments or create assignments for your class</p>
+        <p id="dashDesc">This is your dashboard. Here you can view assignments, delete, or create assignments for your class</p>
           <div className="row" id="dashOptionRow">
             <div className="col s6 m6">
-              <h5 id="dashOptionHeader" style={activeAssignmentShow} onClick={this.showAssignments}>List</h5>
+              <h5 id="dashOptionHeader" onClick={this.showAssignments}><i className="fas fa-scroll" style={activeAssignmentShow}/>{' '}List</h5>
             </div>
             <div className="col s6 m6">
-              <h5 id="dashOptionHeader" style={activeCreate} onClick={this.showCreate}>Create</h5>
+              <h5 id="dashOptionHeader" onClick={this.showCreate}><i className="fas fa-edit" style={activeCreate}/>{' '}Create</h5>
             </div>
           </div>
           {currentContent}

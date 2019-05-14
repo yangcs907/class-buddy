@@ -23,7 +23,7 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000;
   if (decodedToken.exp < currentTime) {
     store.dispatch(logoutUser());
-    window.location.href = "/home";
+    window.location.href = "/login";
   }
 };
 

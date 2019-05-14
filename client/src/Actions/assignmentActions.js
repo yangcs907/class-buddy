@@ -1,7 +1,7 @@
 import axios from 'axios';
 import setAuthWebToken from '../utils/setAuthWebToken.js';
 import jwt_decode from 'jwt-decode';
-import { SHOW_ASSIGNMENTS, GET_ERROR_MESSAGES } from './types.js';
+import { SHOW_ASSIGNMENTS, GET_ERROR_MESSAGES, DELETE_ASSIGNMENT } from './types.js';
 
 export const getAssignments = () => dispatch => {
   axios
@@ -19,4 +19,23 @@ export const getAssignments = () => dispatch => {
       });
       console.log(err);
     })
+};
+export const deleteAssignment = (id) => dispatch => {
+  if (window.confirm('This can not be undone, are you sure you want to delete this assignment?')) {
+  axios
+    .delete(`/course/assignments/${id}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_ASSIGNMENT,
+        payload: id
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERROR_MESSAGES,
+        payload: err.response.data
+      });
+      console.log(err);
+    })
+  }
 };

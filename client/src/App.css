@@ -186,8 +186,28 @@ input::placeholder {
   font-weight: bold;
   font-size: 20px;
 }
+#maxPoints {
+  font-family: 'PT Sans', sans-serif;
+}
+#pointsPossible {
+  font-weight: bold;
+  color: rgba(0,223,255,1);
+}
 #assignmentDesc {
   font-weight: bold;
+}
+.deleteButton {
+  font-family: 'PT Sans', sans-serif;
+  padding: 5px;
+  background-color: none;
+  border-style: none;
+  cursor:pointer;
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+}
+.deleteButton:hover {
+  font-size: 15px;
 }
 /* Footer */
 .footer {
