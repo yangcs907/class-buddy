@@ -9,6 +9,7 @@ Users can create account to view, create, and delete assignments
 ** Will need to create keys_development.js file in config folder
 
 npm install in both root and client folder
+
 npm run dev in root
 ```node
 npm install && cd client && npm install
