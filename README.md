@@ -1,5 +1,6 @@
 # Class Buddy
 MERN stack application with Canvas Instructure API
+
 Users can create account to view, create, and delete assignments
 ## How to run
 ** Require Canvas Instructure account with API Key and Class ID
