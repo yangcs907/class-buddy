@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const passport = require('passport');
 
 const apiKey = require('../config/keys.js').apiKey;
 const classID = require('../config/keys.js').classID;
@@ -13,8 +14,8 @@ router.get('/test', (req, res) => {
   res.json({ msg: "Course route works!" })
 });
 
-// GET /course/assignments || gets assignments from course
-router.get('/assignments', (req, res) => {
+// GET /course/assignments || gets assignments from course  || access: private (requires authentication)
+router.get('/assignments', passport.authenticate('jwt', { session: false }),  (req, res) => {
   axios
   .get(
     `https://canvas.instructure.com/api/v1/courses/${classID}/assignments`,
@@ -28,8 +29,8 @@ router.get('/assignments', (req, res) => {
   })
 });
 
-// DELETE /course/assignment/:id || Deletes a particular assignment
-router.delete('/assignments/:id', (req, res) => {
+// DELETE /course/assignment/:id || Deletes a particular assignment || access: private (requires authentication)
+router.delete('/assignments/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   axios
   .delete(
     `https://canvas.instructure.com/api/v1/courses/${classID}/assignments/${req.params.id}`,
@@ -43,8 +44,8 @@ router.delete('/assignments/:id', (req, res) => {
   })
 });
 
-// POST /course/create-assignment || creates new assignment
-router.post('/create-assignment', (req, res) => {
+// POST /course/create-assignment || creates new assignment || access: private (requires authentication)
+router.post('/create-assignment', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = createvalidation(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
