@@ -41,11 +41,13 @@ class CreateAssignment extends Component {
     const user = this.props.auth.user;
     const nameAssignment = this.state.assignmentName;
     // For SOME reason, if assignmentName includes "#", the post will not work (everything will be empty...glitch?) so.....we make sure to remove any "#"
-    const parsedName = nameAssignment.replace("#", "");
+    const parsedName = nameAssignment.replace(/#/g, "");
     // Canvas API stores description as HTML string, need to add HTML tags before posting
+    // Also for SOME reason, if body has "#"....it won't work...so we make sure to remove all "#"
     const text = this.state.assignmentDescription;
-    const parsedText = text.replace(/(\r\n|\n|\r)/gm, "<br></br>"); // replaces new line with break <br> tags
-    const finalParsedText = "<p>" + parsedText + "</p>" + `<p>Instructor: ${user.name}</p>`; // adds <p> tags
+    const parsedText = text.replace(/#/g, "");
+    const parsedTextAgain = parsedText.replace(/(\r\n|\n|\r)/gm, "<br></br>"); // replaces new line with break <br> tags
+    const finalParsedText = "<p>" + parsedTextAgain + "</p>" + `<p>Instructor: ${user.name}</p>`; // adds <p> tags
     const newAssignment = {
       assignmentName: parsedName,
       assignmentPoints: this.state.assignmentPoints,
