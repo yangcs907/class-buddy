@@ -1,5 +1,5 @@
 {
-  "name": "Class Buddy",
+  "name": "classbuddy",
   "version": "1.0.0",
   "description": "Web app for Canvas Instructure",
   "main": "server.js",
