@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import '../../App.css';
 
 class Home extends Component {
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
-    }
-  };
+  // componentDidMount() {
+  //   if (this.props.auth.isAuthenticated) {
+  //     this.props.history.push('/dashboard');
+  //   }
+  // };
   render() {
     const isAuthenticated = this.props.auth.isAuthenticated;
     const user = this.props.auth.user;
