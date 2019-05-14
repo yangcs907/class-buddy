@@ -1,3 +1,4 @@
+// function to determine if errors object in validation files is empty
 const isEmpty = value =>
     value === undefined ||
     value === null ||

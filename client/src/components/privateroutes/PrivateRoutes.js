@@ -1,3 +1,4 @@
+// Component for private routes (require authentication) used in router in App.js
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,10 +11,10 @@ const PrivateRoutes = ({component: Component, auth, ...rest}) => (
       auth.isAuthenticated === true ? (
         <Component {...props} />
       ) : (
-      <Redirect to="/login" />
-    )
-  }
-  />
+        <Redirect to="/login" />
+      )
+    }
+    />
 );
 
 PrivateRoutes.propTypes = {

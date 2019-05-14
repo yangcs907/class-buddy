@@ -1,3 +1,4 @@
+// Validation for log in form input
 const Validator = require('validator');
 const isEmpty = require('./emptyCheck');
 
@@ -10,11 +11,9 @@ module.exports = function loginvalidation(input) {
   if (!Validator.isEmail(input.email)) {
     errors.email = 'Email is invalid';
   }
-
   if (Validator.isEmpty(input.email)) {
     errors.email = 'Email field is required';
   }
-
   if (Validator.isEmpty(input.password)) {
     errors.password = 'Password field is required';
   }
@@ -23,4 +22,5 @@ module.exports = function loginvalidation(input) {
     errors,
     isValid: isEmpty(errors)
   }
+  
 };

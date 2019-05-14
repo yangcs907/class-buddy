@@ -1,11 +1,11 @@
-// Component for text input fields for forms
+// Component for text area inputs (larger text for assignment body)
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import '../../App.css';
 
-const TextInput = ({
+const TextArea = ({
   name,
   placeholder,
   value,
@@ -16,7 +16,7 @@ const TextInput = ({
 }) => {
   return (
     <div className="inputs">
-      <input
+      <textarea
         type={type}
         className={classnames('validate', {
           'validate-invalid': error
@@ -34,7 +34,7 @@ const TextInput = ({
   )
 };
 
-TextInput.propTypes = {
+TextArea.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -44,8 +44,8 @@ TextInput.propTypes = {
   disabled: PropTypes.string,
 };
 
-TextInput.defaultProps = {
+TextArea.defaultProps = {
   type: 'text'
 };
 
-export default TextInput;
+export default TextArea;

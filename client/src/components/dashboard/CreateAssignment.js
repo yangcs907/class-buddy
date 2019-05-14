@@ -1,8 +1,10 @@
+// Component for creating assignment from (child of dashboard)
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { getAssignments, deleteAssignment } from '../../Actions/assignmentActions.js';
+import { createAssignment } from '../../Actions/assignmentActions.js';
+import TextInput from '../inputs/TextInput.js';
+import TextArea from '../inputs/TextArea.js';
 
 import '../../App.css';
 
@@ -14,37 +16,100 @@ class CreateAssignment extends Component {
       assignmentName: '',
       assignmentPoints: '',
       assignmentDescription: '',
-      descriptionTitle: '',
-      descriptionBody: '',
-      descriptionQuestions: []
+      errors: ''
     }
   };
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.errors) {
+      this.setState({
+        errors: newProps.errors
+      });
+    }
+  };
+
+  handleInputChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    const user = this.props.auth.user;
+    // Canvas API stores description as HTML string, need to add HTML tags before posting
+    const text = this.state.assignmentDescription;
+    const parsedText = text.replace(/(\r\n|\n|\r)/gm, "<br></br>"); // replaces new line with break <br> tags
+    const finalParsedText = "<p>" + parsedText + "</p>" + `<p>Instructor: ${user.name}</p>` // adds <p> tags
+    const newAssignment = {
+      assignmentName: this.state.assignmentName,
+      assignmentPoints: this.state.assignmentPoints,
+      assignmentDescription: finalParsedText
+    };
+    this.props.createAssignment(newAssignment);
+    this.setState({
+      assignmentName: '',
+      assignmentPoints: '',
+      assignmentDescription: ''
+    })
+  };
+
   render() {
-    const assignments = this.props.assignments.assignments;
+    const errors = this.state.errors;
     let createAssignmentForm;
-    let maximumMessage;
     createAssignmentForm = (
       <div>
+        <form>
+          <TextInput
+            name="assignmentName"
+            type="text"
+            placeholder="Name of assignment"
+            value={this.state.assignmentName}
+            onChange={this.handleInputChange}
+            error={errors.assignmentName}
+            />
+          <TextInput
+            name="assignmentPoints"
+            type="number"
+            placeholder="Maximum points"
+            value={this.state.assignmentPoints}
+            onChange={this.handleInputChange}
+            error={errors.assignmentPoints}
+            />
+          <TextArea
+            name="assignmentDescription"
+            type="text"
+            placeholder="Assignment body"
+            value={this.state.assignmentDescription}
+            onChange={this.handleInputChange}
+            error={errors.assignmentDescription}
+            />
+        </form>
+        <p id="submitButton" onClick={this.handleFormSubmit} disabled={!this.state.assignmentName && !this.state.assignmentPoints && !this.state.descriptionBody}><i className="fas fa-pencil-alt"/>{' '}Create!</p>
       </div>
     );
 
     return (
       <div className="createAssignment">
         <h5>Create assignment here</h5>
+        {createAssignmentForm}
       </div>
     );
   };
 };
 
 CreateAssignment.propTypes = {
-  getAssignments: PropTypes.func.isRequired,
-  deleteAssignment: PropTypes.func.isRequired,
-  assignments: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  createAssignment: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
+  errors: state.errorMessages,
+  auth: state.authenticate,
   assignments: state.assignments
 });
 
-export default connect(mapStateToProps, { getAssignments, deleteAssignment })(CreateAssignment);
+export default connect(mapStateToProps, { createAssignment })(CreateAssignment);

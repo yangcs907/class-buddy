@@ -1,14 +1,19 @@
+// Routes for course functionality (with canvas API)
 const express = require('express');
 const router = express.Router();
-const gravatar = require('gravatar');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
 const axios = require('axios');
+
 const apiKey = require('../config/keys.js').apiKey;
 const classID = require('../config/keys.js').classID;
 
+const createvalidation = require('../validation/createvalidation.js');
 
+// GET /course/test || tests course route
+router.get('/test', (req, res) => {
+  res.json({ msg: "Course route works!" })
+});
+
+// GET /course/assignments || gets assignments from course
 router.get('/assignments', (req, res) => {
   axios
   .get(
@@ -23,6 +28,7 @@ router.get('/assignments', (req, res) => {
   })
 });
 
+// DELETE /course/assignment/:id || Deletes a particular assignment
 router.delete('/assignments/:id', (req, res) => {
   axios
   .delete(
@@ -37,7 +43,12 @@ router.delete('/assignments/:id', (req, res) => {
   })
 });
 
+// POST /course/create-assignment || creates new assignment
 router.post('/create-assignment', (req, res) => {
+  const { errors, isValid } = createvalidation(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   axios
   .post(
     `https://canvas.instructure.com/api/v1/courses/${classID}/assignments/?assignment[name]=${req.body.assignmentName}&assignment[points_possible]=${req.body.assignmentPoints}&assignment[description]=${req.body.assignmentDescription}`,
@@ -52,8 +63,5 @@ router.post('/create-assignment', (req, res) => {
   })
 });
 
-router.get('/test', (req, res) => {
-  res.json({ msg: 'works!'})
-});
 
 module.exports = router;

@@ -1,3 +1,4 @@
+// Reducer for error messages for form inputs (from validation files on server side)
 import { GET_ERROR_MESSAGES } from '../Actions/types.js';
 const initialState = {};
 

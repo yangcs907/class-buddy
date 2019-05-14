@@ -41,7 +41,8 @@
 .home {
   text-align: center;
   font-family: 'PT Sans', sans-serif;
-  padding-top: 20px;
+  padding-top: 25px;
+  height: 360px;
 }
 .home h4 {
   font-weight: bold;
@@ -86,6 +87,25 @@ input::placeholder {
 .inValid {
   color: red;
   font-size: 14px;
+}
+textarea {
+  margin-top: 20px;
+  overflow-y: scroll;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+  height: 300px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: rgba(155,155,155,1);
+  padding: 15px;
+}
+textarea::placeholder {
+  color: rgba(155,155,155,1);
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /* Register */
@@ -137,7 +157,7 @@ input::placeholder {
   margin:auto;
   width: 750px;
   max-width: 100%;
-  padding-top: 25px;
+  padding-top: 30px;
 }
 #dashHeader {
   font-weight: bold;
@@ -181,6 +201,7 @@ input::placeholder {
   border-radius: 5px;
   border-width: 3px;
   border-color: rgba(0,223,255,0.7);
+  height: 100%;
 }
 #assignmentName {
   font-weight: bold;
@@ -209,11 +230,27 @@ input::placeholder {
 .deleteButton:hover {
   font-size: 15px;
 }
+#addQuestionButton {
+  text-align: left;
+  width: 105px;
+  background-color: rgba(0,223,255,0.6);
+  color: white;
+  border-style: none;
+  border-radius: 7px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+#addQuestionButton:hover {
+  background-color: rgba(0,223,255,0.8);
+}
 /* Footer */
 .footer {
-  position: absolute;
-  margin-top: 50px;
+  /* position: absolute; */
   bottom: 0;
+  margin-top: 50px;
   padding-left: 15px;
   border-top-style: solid;
   border-width: 0.5px;
@@ -222,6 +259,7 @@ input::placeholder {
 #footerText {
   font-family: 'PT Sans', sans-serif;
   line-height: 10px;
+  bottom:0;
 }
 /* Media queries */
 @media screen and (max-width: 815px) {

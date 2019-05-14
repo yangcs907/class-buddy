@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthWebToken from './utils/setAuthWebToken.js';
 import { setCurrentUser, logoutUser } from './Actions/authenticationActions.js';
@@ -41,6 +41,7 @@ class App extends Component {
                 <PrivateRoutes exact path = "/dashboard" component = {Dashboard} />
               </Switch>
           </div>
+          <Footer />
         </Router>
       </Provider>
     );

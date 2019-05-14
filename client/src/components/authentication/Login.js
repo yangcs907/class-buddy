@@ -1,3 +1,4 @@
+// Component for log in page for user log in
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,11 +15,11 @@ class Login extends Component {
     };
   };
 
-componentDidMount() {
-  if (this.props.auth.isAuthenticated) {
-    this.props.history.push('/dashboard');
-  }
-};
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  };
 
   componentWillReceiveProps(newProps) {
     if (newProps.auth.isAuthenticated) {
@@ -53,27 +54,27 @@ componentDidMount() {
     const errors = this.state.errors;
     return (
       <div className="login">
-              <h1 id="loginHead"><i className="fas fa-sign-in-alt" id="icon" />{' '}Log In</h1>
-              <p>Sign in to your account</p>
-              <form>
-                <TextInput
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.handleInputChange}
-                  error={errors.email}
-                  />
-                  <TextInput
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                    error={errors.password}
-                    />
-                  <button onClick={this.handleFormSubmit} type="submit" id="submitButton" style={{fontSize:"20px"}}>Log In</button>
-              </form>
+        <h1 id="loginHead"><i className="fas fa-sign-in-alt" id="icon" />{' '}Log In</h1>
+        <p>Sign in to your account</p>
+        <form>
+          <TextInput
+            placeholder="Email Address"
+            name="email"
+            type="email"
+            value={this.state.email}
+            onChange={this.handleInputChange}
+            error={errors.email}
+            />
+          <TextInput
+            placeholder="Password"
+            name="password"
+            type="password"
+            value={this.state.password}
+            onChange={this.handleInputChange}
+            error={errors.password}
+            />
+          <button onClick={this.handleFormSubmit} type="submit" id="submitButton" style={{fontSize:"20px"}}>Log In</button>
+        </form>
       </div>
     )
   }
@@ -84,6 +85,7 @@ Login.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
+
 const mapStateToProps = (state) => ({
   auth: state.authenticate,
   errors: state.errorMessages

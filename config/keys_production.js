@@ -1,3 +1,4 @@
+// Keys for env on heroku
 module.exports = {
   mongoURI: process.env.mongoURI,
   secretOrKey: process.env.secretOrKey,

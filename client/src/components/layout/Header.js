@@ -1,3 +1,4 @@
+// Component for header (picture, logo, navigation bar)
 import React, { Component } from 'react';
 import { NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -36,7 +37,7 @@ class Header extends Component {
     );
     const logoutLink = (
       <NavLink to="/login" activeStyle={activeStyle} className="navLink">
-        <i className="fas fa-sign-out-alt" id="navIcon"/>{' '}<a id="logout" onClick={this.onLogout}>Logout</a>
+        <i className="fas fa-sign-out-alt" id="navIcon"/>{' '}<a href="#" id="logout" onClick={this.onLogout}>Logout</a>
       </NavLink>
     );
     const dashboardLink = (

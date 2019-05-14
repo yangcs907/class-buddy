@@ -1,3 +1,4 @@
+// Reducer for authentication (register/login)
 import isEmpty from '../validation/emptyCheck.js';
 import { SET_CURRENT_USER, SET_CURRENT_USER_INFO, SHOW_WEB_TOKEN } from '../Actions/types.js';
 

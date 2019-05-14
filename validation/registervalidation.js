@@ -1,5 +1,6 @@
+// Validation for register user form input
 const Validator = require('validator');
-const isEmpty = require('./emptyCheck');
+const isEmpty = require('./emptyCheck.js');
 
 module.exports = function registervalidation(input) {
   let errors = {};
@@ -12,31 +13,24 @@ module.exports = function registervalidation(input) {
   if (!Validator.isLength(input.name, { min: 2, max: 30})) {
     errors.name = 'Name must be between 2 and 30 characters';
   }
-
   if (Validator.isEmpty(input.name)) {
     errors.name = 'Name field is required';
   }
-
   if (Validator.isEmpty(input.email)) {
     errors.email = 'Email field is required';
   }
-
   if (!Validator.isEmail(input.email)) {
     errors.email = 'Email is invalid';
   }
-
   if (Validator.isEmpty(input.password)) {
     errors.password = 'Password field is required';
   }
-
   if (!Validator.isLength(input.password, {min: 6, max: 30})) {
     errors.password = 'Password must be at least 6 characters';
   }
-
   if (Validator.isEmpty(input.password2)) {
     errors.password2 = 'Confirm Password field is required';
   }
-
   if (!Validator.equals(input.password, input.password2)) {
     errors.password2 = 'Passwords must match';
   }
@@ -45,4 +39,5 @@ module.exports = function registervalidation(input) {
     errors,
     isValid: isEmpty(errors)
   }
+
 };

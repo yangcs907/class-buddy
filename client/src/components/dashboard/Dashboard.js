@@ -1,7 +1,7 @@
+// Dashboard includes options (view assignments/create) that toggle view
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import Assignments from './Assignments.js';
 import CreateAssignment from './CreateAssignment.js';

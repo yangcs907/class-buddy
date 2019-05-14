@@ -1,3 +1,4 @@
+// Routes for registering, logging in users
 const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
@@ -13,18 +14,14 @@ const loginvalidation = require('../validation/loginvalidation.js');
 //load User model
 const User = require('../models/User.js');
 
-// @route GET api/users/test
-// @description - tests users route
-// @access Public
-router.get('/test', (req, res) => res.json({msg: "Users works"}));
+// GET /users/test || tests users route
+router.get('/test', (req, res) => {
+  res.json({ msg: "Users route works!" })
+});
 
-// @route POST api/users/register
-// @description - register a user
-// @access Public
+// POST /users/register || registers a new user into MongoDB
 router.post('/register', (req, res) => {
   const { errors, isValid } = registervalidation(req.body);
-
-  //check validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -35,15 +32,9 @@ router.post('/register', (req, res) => {
         errors.email = "Email already exists";
         return res.status(400).json(errors);
       } else {
-        const avatar = gravatar.url(req.body.email, {
-          s: '200', //size
-          r: 'pg', //rating
-          d: 'mm' //default
-        });
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
-          avatar,
           password: req.body.password
         });
         bcrypt.genSalt(10, (err, salt) => {
@@ -59,35 +50,28 @@ router.post('/register', (req, res) => {
     });
 });
 
-// @route GET api/users/login
-// @description - logins user / returning json web token
-// @access Public
+// GET /users/login || log in user
 router.post('/login', (req, res) => {
   const { errors, isValid } = loginvalidation(req.body);
-  //check validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
   const email = req.body.email;
   const password = req.body.password;
-  //find user by email
   User.findOne({ email })
     .then(user => {
-      //check for user
       if (!user) {
         errors.email = 'User not found';
         return res.status(404).json(errors);
       }
-      //Check password
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
-            // User matched
-            // create jwt payload
             const payload = {
               id: user.id,
-              name: user.name            };
+              name: user.name
+            };
             // sign token
             // expires in # seconds
             jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
