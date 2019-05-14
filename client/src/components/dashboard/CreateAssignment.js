@@ -39,12 +39,15 @@ class CreateAssignment extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     const user = this.props.auth.user;
+    const nameAssignment = this.state.assignmentName;
+    // For SOME reason, if assignmentName includes "#", the post will not work (everything will be empty...glitch?) so.....we make sure to remove any "#"
+    const parsedName = nameAssignment.replace("#", "");
     // Canvas API stores description as HTML string, need to add HTML tags before posting
     const text = this.state.assignmentDescription;
     const parsedText = text.replace(/(\r\n|\n|\r)/gm, "<br></br>"); // replaces new line with break <br> tags
-    const finalParsedText = "<p>" + parsedText + "</p>" + `<p>Instructor: ${user.name}</p>` // adds <p> tags
+    const finalParsedText = "<p>" + parsedText + "</p>" + `<p>Instructor: ${user.name}</p>`; // adds <p> tags
     const newAssignment = {
-      assignmentName: this.state.assignmentName,
+      assignmentName: parsedName,
       assignmentPoints: this.state.assignmentPoints,
       assignmentDescription: finalParsedText
     };
@@ -54,6 +57,15 @@ class CreateAssignment extends Component {
       assignmentPoints: '',
       assignmentDescription: ''
     })
+  };
+
+  parsedText = () => {
+    const user = this.props.auth.user;
+    // Canvas API stores description as HTML string, need to add HTML tags before posting
+    const text = this.state.assignmentDescription;
+    const parsedText = text.replace(/(\r\n|\n|\r)/gm, "<br></br>"); // replaces new line with break <br> tags
+    const finalParsedText = "<p>" + parsedText + "</p>" + `<p>Instructor: ${user.name}</p>`;
+    console.log(finalParsedText);
   };
 
   render() {
@@ -88,7 +100,8 @@ class CreateAssignment extends Component {
             />
         </form>
         <p id="submitButton" onClick={this.handleFormSubmit} disabled={!this.state.assignmentName && !this.state.assignmentPoints && !this.state.descriptionBody}><i className="fas fa-pencil-alt"/>{' '}Create!</p>
-      </div>
+        <button onClick={this.parsedText}>Parse Text</button>
+    </div>
     );
 
     return (

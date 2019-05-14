@@ -15,7 +15,7 @@ router.get('/test', (req, res) => {
 });
 
 // GET /course/assignments || gets assignments from course  || access: private (requires authentication)
-router.get('/assignments', passport.authenticate('jwt', { session: false }),  (req, res) => {
+router.get('/assignments', passport.authenticate('jwt', { session: false }), (req, res) => {
   axios
   .get(
     `https://canvas.instructure.com/api/v1/courses/${classID}/assignments`,

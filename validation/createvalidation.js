@@ -21,9 +21,6 @@ module.exports = function createvalidation(input) {
   if (Validator.isEmpty(input.assignmentDescription)) {
     errors.assignmentDescription = 'Assignment body is required';
   }
-  if (!Validator.isLength(input.assignmentDescription, { min: 20 })) {
-    errors.assignmentDescription = 'Assignment body must be at least 5 characters';
-  }
 
   return {
     errors,
