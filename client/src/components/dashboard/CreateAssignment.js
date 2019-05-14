@@ -40,7 +40,7 @@ class CreateAssignment extends Component {
     event.preventDefault();
     const user = this.props.auth.user;
     const nameAssignment = this.state.assignmentName;
-    // For SOME reason, if assignmentName includes "#", the post will not work (everything will be empty...glitch?) so.....we make sure to remove any "#"
+    // For SOME reason, if assignmentName includes "#", the post will not work (everything will be empty after the #...glitch?) so.....we make sure to remove any "#"
     const parsedName = nameAssignment.replace(/#/g, "");
     // Canvas API stores description as HTML string, need to add HTML tags before posting
     // Also for SOME reason, if body has "#"....it won't work...so we make sure to remove all "#"
@@ -59,15 +59,6 @@ class CreateAssignment extends Component {
       assignmentPoints: '',
       assignmentDescription: ''
     })
-  };
-
-  parsedText = () => {
-    const user = this.props.auth.user;
-    // Canvas API stores description as HTML string, need to add HTML tags before posting
-    const text = this.state.assignmentDescription;
-    const parsedText = text.replace(/(\r\n|\n|\r)/gm, "<br></br>"); // replaces new line with break <br> tags
-    const finalParsedText = "<p>" + parsedText + "</p>" + `<p>Instructor: ${user.name}</p>`;
-    console.log(finalParsedText);
   };
 
   render() {
@@ -102,7 +93,6 @@ class CreateAssignment extends Component {
             />
         </form>
         <p id="submitButton" onClick={this.handleFormSubmit} disabled={!this.state.assignmentName && !this.state.assignmentPoints && !this.state.descriptionBody}><i className="fas fa-pencil-alt"/>{' '}Create!</p>
-        <button onClick={this.parsedText}>Parse Text</button>
     </div>
     );
 
